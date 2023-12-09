@@ -30,6 +30,7 @@ export default function FolderList() {
 				{folders.map((folder, index) => {
 					return (
 						<Link
+							key={folder._id}
 							href={`/${encodeURIComponent(folder.title)}`}
 							className={`card group animate-fade-right animate-once animate-ease-in-out animate-normal `}
 							style={{ animationDelay: `${index + 1 * 0.3}s` }} // Add staggered delay
@@ -42,14 +43,9 @@ export default function FolderList() {
 									<img
 										src={folder.image.url}
 										alt={folder.title}
-										className="bg-naitechh-surface p-3"
+										className="max-w-[10rem] md:pr-3 rounded-xl md:rounded-none md:border-r-2 border-black drop-shadow-xl"
 									/>
 								)}
-
-								<img
-									src="https://images.unsplash.com/photo-1683009427479-c7e36bbb7bca?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8"
-									className="max-w-[10rem] md:pr-3 rounded-xl md:rounded-none md:border-r-2 border-black drop-shadow-xl"
-								/>
 								<span className="w-full min-h-full text-lg md:text-2xl font-bold flex flex-col justify-center">
 									<h3 className="md:border-b-2 border-black mb-2 text-center p-2">
 										{folder.title}
