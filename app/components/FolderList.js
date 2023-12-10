@@ -9,7 +9,7 @@ export default function FolderList() {
 	useEffect(() => {
 		const fetchFolders = async () => {
 			const result = await client.fetch(
-				'*[_type == "folder"]{_id, title, description, image, links[]->{_id, title, url}}'
+				'*[_type == "folder"]{_id, title,slug ,description, image, links[]->{_id, title, url}}'
 			);
 			setFolders(result);
 		};
@@ -31,7 +31,7 @@ export default function FolderList() {
 					return (
 						<Link
 							key={folder._id}
-							href={`/${encodeURIComponent(folder.title)}`}
+							href={`/${encodeURIComponent(folder.slug?.current)}`}
 							className={`card group animate-fade-right animate-once animate-ease-in-out animate-normal `}
 							style={{ animationDelay: `${index + 1 * 0.3}s` }} // Add staggered delay
 						>
