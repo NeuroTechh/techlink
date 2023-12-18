@@ -6,9 +6,9 @@
 	padding: 0;
 	font-family: monospace;
 }
-@fonr-face {
-	font-family: "Nippo", sans-serif;
-	src: url("Nippo-Bold.ttf");
+@font-face {
+	font-family: "Nippo";
+	src: url("https://cdn.fontshare.com/wf/2OL4LXA5M5I356SBWVB4LAJG3QBQSZFB/FNR7KF5LLYR7Z3432OX45FC55F3P7ZUU/ETCSFVPIPXRJCW4SFAJPOJ7XY2GSEY2C.woff2");
 	font-display: swap;
 }
 h1 {

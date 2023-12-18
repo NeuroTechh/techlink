@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import imageUrlBuilder from "@sanity/image-url";
 import client from "../utils/sanity";
 
 export default function FolderList() {
@@ -16,7 +17,12 @@ export default function FolderList() {
 
 		fetchFolders();
 	}, []);
-	let arr = 0;
+	const builder = imageUrlBuilder(client);
+
+	function urlForImage(source) {
+		return builder.image(source);
+	}
+
 	return (
 		<div className="min-w-full flex flex-col justify-center items-center">
 			<h1
@@ -31,7 +37,9 @@ export default function FolderList() {
 					return (
 						<Link
 							key={folder._id}
-							href={`/${encodeURIComponent(folder.slug?.current)}`}
+							href={`/${encodeURIComponent(
+								folder.slug?.current
+							)}`}
 							className={`card group animate-fade-right animate-once animate-ease-in-out animate-normal `}
 							style={{ animationDelay: `${index + 1 * 0.3}s` }} // Add staggered delay
 						>
@@ -41,18 +49,15 @@ export default function FolderList() {
 							>
 								{folder.image && (
 									<img
-										src={folder.image.url}
+										src={urlForImage(folder.image)}
 										alt={folder.title}
-										className="max-w-[10rem] md:pr-3 rounded-xl md:rounded-none md:border-r-2 border-black drop-shadow-xl"
+										className="max-w-[10rem] md:pr-3 rounded-xl md:rounded-none drop-shadow-xl"
 									/>
 								)}
 								<span className="w-full min-h-full text-lg md:text-2xl font-bold flex flex-col justify-center">
-									<h3 className="md:border-b-2 border-black mb-2 text-center p-2">
+									<h3 className=" mb-2 text-center p-2">
 										{folder.title}
 									</h3>
-									<p className="text-center p-2">
-										{folder.description}
-									</p>
 								</span>
 							</li>
 						</Link>
