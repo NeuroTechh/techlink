@@ -10,8 +10,7 @@ export default function FolderList() {
 	useEffect(() => {
 		const fetchFolders = async () => {
 			const result = await client.fetch(
-				'*[_type == "folder"]{_id, title, description, image, links[]->{_id, title, url}}' //explain me this query
-				// this query is saying to fetch all folders and their links and their title and description and image and links  and their title and url and id and then set the result to the folders state variable
+				'*[_type == "folder"]{_id, title,slug ,description, image, links[]->{_id, title, url}}'
 			);
 			setFolders(result);
 		};
@@ -38,7 +37,9 @@ export default function FolderList() {
 					return (
 						<Link
 							key={folder._id}
-							href={`/${encodeURIComponent(folder.slug?.current)}`}
+							href={`/${encodeURIComponent(
+								folder.slug?.current
+							)}`}
 							className={`card group animate-fade-right animate-once animate-ease-in-out animate-normal `}
 							style={{ animationDelay: `${index + 1 * 0.3}s` }} // Add staggered delay
 						>
@@ -50,16 +51,13 @@ export default function FolderList() {
 									<img
 										src={urlForImage(folder.image)}
 										alt={folder.title}
-										className="max-w-[10rem] md:pr-3 rounded-xl md:rounded-none md:border-r-2 border-black drop-shadow-xl"
+										className="max-w-[10rem] md:pr-3 rounded-xl md:rounded-none drop-shadow-xl"
 									/>
 								)}
 								<span className="w-full min-h-full text-lg md:text-2xl font-bold flex flex-col justify-center">
-									<h3 className="md:border-b-2 border-black mb-2 text-center p-2">
+									<h3 className=" mb-2 text-center p-2">
 										{folder.title}
 									</h3>
-									<p className="text-center p-2">
-										{folder.description}
-									</p>
 								</span>
 							</li>
 						</Link>
