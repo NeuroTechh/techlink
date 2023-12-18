@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import imageUrlBuilder from "@sanity/image-url";
 import client from "../utils/sanity";
 
 export default function FolderList() {
@@ -9,14 +10,20 @@ export default function FolderList() {
 	useEffect(() => {
 		const fetchFolders = async () => {
 			const result = await client.fetch(
-				'*[_type == "folder"]{_id, title, description, image, links[]->{_id, title, url}}'
+				'*[_type == "folder"]{_id, title, description, image, links[]->{_id, title, url}}' //explain me this query
+				// this query is saying to fetch all folders and their links and their title and description and image and links  and their title and url and id and then set the result to the folders state variable
 			);
 			setFolders(result);
 		};
 
 		fetchFolders();
 	}, []);
-	let arr = 0;
+	const builder = imageUrlBuilder(client);
+
+	function urlForImage(source) {
+		return builder.image(source);
+	}
+
 	return (
 		<div className="min-w-full flex flex-col justify-center items-center">
 			<h1
@@ -41,7 +48,7 @@ export default function FolderList() {
 							>
 								{folder.image && (
 									<img
-										src={folder.image.url}
+										src={urlForImage(folder.image)}
 										alt={folder.title}
 										className="max-w-[10rem] md:pr-3 rounded-xl md:rounded-none md:border-r-2 border-black drop-shadow-xl"
 									/>

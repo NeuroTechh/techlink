@@ -485,7 +485,7 @@
     golden-fleece "^1.0.9"
     pkg-dir "^5.0.0"
 
-"@sanity/client@^6.9.1", "@sanity/client@^6.9.3":
+"@sanity/client@^5.0.0 || ^6.0.0", "@sanity/client@^6.9.1", "@sanity/client@^6.9.3":
   version "6.9.3"
   resolved "https://registry.npmjs.org/@sanity/client/-/client-6.9.3.tgz"
   integrity sha512-ba8fHqsncuuPNCGs5qTynpQqWdyeQzXmPQ6UzaNCn4/JNKmoucrdSNfCijE+3CsA23OJpZe51RqkF9JRvOpkdw==
@@ -3200,6 +3200,13 @@ nanoid@^3.1.12, nanoid@^3.1.30, nanoid@^3.3.6, nanoid@^3.3.7:
 natural-compare@^1.4.0:
   version "1.4.0"
 
+next-sanity-image@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.npmjs.org/next-sanity-image/-/next-sanity-image-6.1.1.tgz"
+  integrity sha512-mLRiatJW3TZoD3VlUCci4lOxW9lKOl0bxDsYtk/JRqKZo25QJqPXNV7aoD+lmjEFf6RO2eW7uJ57QeI20mPhOA==
+  dependencies:
+    "@sanity/image-url" "^1.0.2"
+
 next-sanity@^7.0.1:
   version "7.0.1"
   dependencies:
@@ -3208,7 +3215,7 @@ next-sanity@^7.0.1:
     "@sanity/webhook" "4.0.0"
     groq "^3.19"
 
-next@^14.0, next@14.0.3:
+"next@^13.0.0 || ^14.0.0", next@^14.0, next@14.0.3:
   version "14.0.3"
   dependencies:
     "@next/env" "14.0.3"

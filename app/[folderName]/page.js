@@ -2,10 +2,10 @@
 import { useState, useEffect } from "react";
 import client from "@/app/utils/sanity";
 import { usePathname } from "next/navigation";
+import imageUrlBuilder from "@sanity/image-url";
 
 export default function Folder({}) {
 	const folderName = usePathname().replace("/", "");
-	console.log(folderName);
 	const [folderData, setFolderData] = useState(null);
 	const [newtime, setNewtime] = useState(0);
 
@@ -22,6 +22,11 @@ export default function Folder({}) {
 		}
 	}, []);
 
+	const builder = imageUrlBuilder(client);
+
+	function urlForImage(source) {
+		return builder.image(source);
+	}
 	if (!folderData) {
 		return (
 			<main
@@ -46,7 +51,7 @@ export default function Folder({}) {
 
 				{folderData.image && (
 					<img
-						src={folderData.image.url}
+						src={urlForImage(folder.image)}
 						alt={folderData.title}
 						className="md:max-w-[75ch] w-full rounded-lg max-h-[45vw] md:max-h-[15vw] object-cover mx-auto shadow-2xl border-8 border-naitechh-surface m-8 animate-fade-right animate-once animate-ease-in-out animate-normal"
 					/>
