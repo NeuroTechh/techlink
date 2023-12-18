@@ -13,7 +13,7 @@ export default function Folder({}) {
 		if (folderName) {
 			const fetchFolderData = async () => {
 				const result = await client.fetch(
-					`*[_type == "folder" && title == "${folderName}"]{_id, title, description, image, links[]->{_id, title, url}}`
+					`*[_type == "folder" && slug.current == "${folderName}"]{_id, title, description, image, links[]->{_id, title, url}}`
 				);
 				setFolderData(result[0]);
 			};
